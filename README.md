@@ -1,1 +1,1 @@
-# github-deepwiki-extension 
+# github-deepwiki
