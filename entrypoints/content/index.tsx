@@ -9,25 +9,21 @@ export default defineContentScript({
   cssInjectionMode: "ui",
   async main(ctx) {
     const link = window.location.href;
-    if (!githubRepoRegex.test(link)) {
+    const match = link.match(githubRepoRegex);
+    if (!match) {
       return;
     }
-    const user = link.match(githubRepoRegex)?.[1];
-    const repo = link.match(githubRepoRegex)?.[2];
+    const user = match[1];
+    const repo = match[2];
     const ui = createIntegratedUi(ctx, {
       tag: "li",
-      // name: "github-deepwiki",
       position: "inline",
       anchor: "ul.pagehead-actions",
       append: "first",
       onMount(container) {
-        // Container is a body, and React warns when creating a root on the body, so create a wrapper div
-        // const app = document.createElement("div");
-        // container.append(app);
-
         // Create a root on the UI container and render a component
         const root = ReactDOM.createRoot(container);
-        root.render(<App />);
+        root.render(<App user={user} repo={repo} />);
         return root;
       },
       onRemove(root) {
