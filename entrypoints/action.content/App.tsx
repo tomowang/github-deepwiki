@@ -1,4 +1,5 @@
 import { MessageTarget, MessageAction } from "@/utils/const";
+import logo from "@/assets/deepwiki.svg";
 interface Props {
   user: string;
   repo: string;
@@ -16,7 +17,17 @@ export default function App({ user, repo }: Props) {
     });
   }
   return (
-    <button className="btn btn-sm" onClick={handleClick}>
+    <button
+      className="btn-sm btn inline-flex items-center"
+      onClick={handleClick}
+    >
+      <img
+        src={logo}
+        width={16}
+        height={16}
+        alt="DeepWiki"
+        className="mr-2 inline-block align-center"
+      />
       DeepWiki
     </button>
   );
