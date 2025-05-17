@@ -1,16 +1,19 @@
+import { MessageTarget, MessageAction } from "@/utils/const";
+
 export default defineBackground(() => {
-  // Set the side panel behavior to open on action click
-  browser.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
   // Listen for messages from the content script
   browser.runtime.onMessage.addListener(
     async (request, sender, sendResponse) => {
-      if (request.action === "openSidePanel") {
+      if (
+        request.action === MessageAction.TOGGLE_PANEL &&
+        request.target === MessageTarget.BACKGROUND
+      ) {
         const { link } = request;
-        console.log("Opening link:", link);
+        console.log("toggle link:", link);
         if (sender.tab && sender.tab.id !== undefined) {
-          await browser.sidePanel.open({ tabId: sender.tab.id });
-          await browser.runtime.sendMessage({
-            action: "openLink",
+          browser.tabs.sendMessage(sender.tab.id, {
+            action: MessageAction.TOGGLE_PANEL,
+            target: MessageTarget.PANEL,
             link: link,
           });
         }

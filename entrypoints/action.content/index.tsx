@@ -1,20 +1,18 @@
+import "~/assets/tailwind.css";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./style.css";
-
-const githubRepoRegex = /^https:\/\/github.com\/([^\/]+)\/([^\/]+).*$/;
+import { extractGitHubRepoInfo } from "@/utils/index";
 
 export default defineContentScript({
   matches: ["https://github.com/*"],
   cssInjectionMode: "ui",
   async main(ctx) {
     const link = window.location.href;
-    const match = link.match(githubRepoRegex);
-    if (!match) {
+    const info = extractGitHubRepoInfo(link);
+    if (!info) {
       return;
     }
-    const user = match[1];
-    const repo = match[2];
+    const { user, repo } = info;
     const ui = createIntegratedUi(ctx, {
       tag: "li",
       position: "inline",

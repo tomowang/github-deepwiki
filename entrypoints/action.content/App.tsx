@@ -1,3 +1,4 @@
+import { MessageTarget, MessageAction } from "@/utils/const";
 interface Props {
   user: string;
   repo: string;
@@ -8,15 +9,15 @@ export default function App({ user, repo }: Props) {
 
   function handleClick() {
     // window.open(link, "_blank");
-    // Send a message to the background script to open the link
     browser.runtime.sendMessage({
-      action: "openSidePanel",
+      action: MessageAction.TOGGLE_PANEL,
+      target: MessageTarget.BACKGROUND,
       link: link,
     });
   }
   return (
     <button className="btn btn-sm" onClick={handleClick}>
-      Deepwiki
+      DeepWiki
     </button>
   );
 }
