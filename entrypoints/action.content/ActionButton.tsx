@@ -6,7 +6,7 @@ interface Props {
   repo: string;
 }
 
-export default function App({ user, repo }: Props) {
+export default function ActionButton({ user, repo }: Props) {
   const link = `https://deepwiki.com/${user}/${repo}`;
 
   function handleClick() {

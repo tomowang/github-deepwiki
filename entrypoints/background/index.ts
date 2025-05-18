@@ -1,4 +1,5 @@
 import { MessageTarget, MessageAction } from "@/utils/const";
+const contentMatch = new MatchPattern(CONTENT_SCRIPT_MATCHES);
 
 export default defineBackground(() => {
   // Listen for messages from the content script
@@ -23,7 +24,6 @@ export default defineBackground(() => {
 
   (browser.action ?? browser.browserAction).onClicked.addListener((tab) => {
     if (!tab.id) return;
-    const contentMatch = new MatchPattern(CONTENT_SCRIPT_MATCHES);
     if (!tab.url || !contentMatch.includes(tab.url)) return;
     const info = extractGitHubRepoInfo(tab.url);
     if (info) {

@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { MessageTarget, MessageAction, DEFAULT_WIDTH } from "@/utils/const";
 import ResizePanel from "@/components/ResizePanel";
 
-export default function App() {
+export default function SidePanel() {
   const [open, setOpen] = useState(false);
   const [link, setLink] = useState("");
   const [width, setWidth] = useState(DEFAULT_WIDTH);

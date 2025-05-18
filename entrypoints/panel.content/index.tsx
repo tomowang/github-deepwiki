@@ -1,6 +1,6 @@
 import "~/assets/tailwind.css";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import SidePanel from "./SidePanel";
 import { extractGitHubRepoInfo } from "@/utils/index";
 
 export default defineContentScript({
@@ -27,7 +27,7 @@ export default defineContentScript({
       onMount(container) {
         // Create a root on the UI container and render a component
         const root = ReactDOM.createRoot(container);
-        root.render(<App />);
+        root.render(<SidePanel />);
         return root;
       },
       onRemove(root) {
