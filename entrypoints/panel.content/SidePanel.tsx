@@ -8,16 +8,12 @@ export default function SidePanel() {
   const [width, setWidth] = useState(DEFAULT_WIDTH);
   const h = document.querySelector("html");
 
-  function handlePanelResize(width: number) {
+  async function handlePanelResize(width: number) {
     setWidth(width);
+    await storage.setItem<number>(PANEL_WIDTH_STORAGE_KEY, width);
   }
 
-  useEffect(() => {
-    if (!h || !h.style) return;
-    h.style.setProperty("width", `calc(100% - ${width}px)`, "important");
-  }, [width]);
-
-  useEffect(() => {
+  function setHtmlWidth() {
     if (!h || !h.style) return;
     if (open) {
       h.style.setProperty("width", `calc(100% - ${width}px)`, "important");
@@ -28,7 +24,19 @@ export default function SidePanel() {
       h.style.setProperty("position", "");
       h.style.setProperty("minHeight", "");
     }
-  }, [open]);
+  }
+
+  useEffect(() => {
+    storage.getItem<number>(PANEL_WIDTH_STORAGE_KEY).then((width) => {
+      if (width) {
+        setWidth(width);
+      }
+    });
+  });
+
+  useEffect(() => {
+    setHtmlWidth();
+  }, [open, width]);
 
   useEffect(() => {
     browser.runtime.onMessage.addListener((message) => {
@@ -45,7 +53,7 @@ export default function SidePanel() {
         "fixed right-0 top-0 h-full",
         open ? "flex" : "hidden"
       )}
-      defaultWidth={width}
+      width={width}
       handlePanelResize={handlePanelResize}
     >
       <div className="h-full">

@@ -6,7 +6,7 @@ export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   manifest: {
     name: "GitHub DeepWiki",
-    permissions: ["activeTab", "scripting"],
+    permissions: ["activeTab", "scripting", "storage"],
     action: {},
   },
   vite: () =>

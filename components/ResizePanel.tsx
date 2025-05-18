@@ -1,9 +1,15 @@
 export default function ResizePanel({
-  children, className, defaultWidth, handlePanelResize}:
-  {children: React.ReactNode, className?: string, defaultWidth?: number, handlePanelResize?: (width: number) => void}
-){
+  children,
+  className,
+  width,
+  handlePanelResize,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  width: number;
+  handlePanelResize: (width: number) => void;
+}) {
   const [isResizing, setIsResizing] = useState(false);
-  const [width, setWidth] = useState(defaultWidth || 400); // Default width
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -17,10 +23,7 @@ export default function ResizePanel({
     if (!container) return;
     const containerRect = container.getBoundingClientRect();
     const newWidth = containerRect.right - e.clientX;
-    setWidth(newWidth);
-    if (handlePanelResize) {
-      handlePanelResize(newWidth);
-    }
+    handlePanelResize(newWidth);
   };
 
   const handleMouseUp = () => {
@@ -40,7 +43,7 @@ export default function ResizePanel({
   return (
     <div
       className={cn("flex", className)}
-      style={{ width }}
+      style={{ width: `${width}px` }}
       ref={containerRef}
     >
       <div
@@ -48,7 +51,9 @@ export default function ResizePanel({
         onMouseDown={handleMouseDown}
       />
       <div className="w-[calc(100%-var(--panel-resizer-width))] h-full relative">
-        {isResizing && <div className="absolute top-0 left-0 w-full h-full z-10"></div>}
+        {isResizing && (
+          <div className="absolute top-0 left-0 w-full h-full z-10"></div>
+        )}
         {children}
       </div>
     </div>
