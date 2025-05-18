@@ -4,7 +4,7 @@ import App from "./App";
 import { extractGitHubRepoInfo } from "@/utils/index";
 
 export default defineContentScript({
-  matches: ["https://github.com/*"],
+  matches: [CONTENT_SCRIPT_MATCHES],
   // cssInjectionMode: "ui",
   async main(ctx) {
     const link = window.location.href;

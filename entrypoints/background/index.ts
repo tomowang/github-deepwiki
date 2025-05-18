@@ -20,4 +20,20 @@ export default defineBackground(() => {
       }
     }
   );
+
+  (browser.action ?? browser.browserAction).onClicked.addListener((tab) => {
+    if (!tab.id) return;
+    const contentMatch = new MatchPattern(CONTENT_SCRIPT_MATCHES);
+    if (!tab.url || !contentMatch.includes(tab.url)) return;
+    const info = extractGitHubRepoInfo(tab.url);
+    if (info) {
+      const { user, repo } = info;
+      const link = `https://deepwiki.com/${user}/${repo}`;
+      browser.tabs.sendMessage(tab.id, {
+        action: MessageAction.TOGGLE_PANEL,
+        target: MessageTarget.PANEL,
+        link,
+      });
+    }
+  });
 });

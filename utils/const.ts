@@ -8,3 +8,5 @@ export enum MessageTarget {
 }
 
 export const DEFAULT_WIDTH = 400;
+
+export const CONTENT_SCRIPT_MATCHES = "https://github.com/*";
