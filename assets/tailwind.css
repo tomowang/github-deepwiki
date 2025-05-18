@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+:root {
+  --panel-resizer-width: 5px;
+}
