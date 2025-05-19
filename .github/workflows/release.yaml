@@ -1,0 +1,47 @@
+name: build and release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: latest
+          run_install: false
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Package chrome and edge
+        run: pnpm zip
+
+      - name: Package firefox
+        run: pnpm zip:firefox
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            .output/github-deepwiki-*.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          make_latest: true

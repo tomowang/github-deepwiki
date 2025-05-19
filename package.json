@@ -1,8 +1,8 @@
 {
   "name": "github-deepwiki",
-  "description": "A github extension to open deepwiki sidepanel",
+  "description": "GitHub DeepWiki - link github repo to deepwiki.com",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
