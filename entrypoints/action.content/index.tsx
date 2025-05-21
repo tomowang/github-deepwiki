@@ -18,6 +18,7 @@ export default defineContentScript({
 
 function mainWatch(ctx: ContentScriptContext) {
   if (document.getElementById(CONTENT_SCRIPT_CONTAINER_ID)) return;
+  if (!document.querySelector("ul.pagehead-actions")) return;
 
   const link = window.location.href;
   const info = extractGitHubRepoInfo(link);
