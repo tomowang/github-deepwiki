@@ -22,7 +22,7 @@ export default defineContentScript({
     const ui = await createShadowRootUi(ctx, {
       name: "github-deepwiki",
       position: "inline",
-      anchor: "body",
+      anchor: container,
       append: "last",
       onMount(container) {
         // Create a root on the UI container and render a component
