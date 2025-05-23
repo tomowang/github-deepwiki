@@ -2,7 +2,7 @@
   "name": "github-deepwiki",
   "description": "GitHub DeepWiki - link github repo to deepwiki.com",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
