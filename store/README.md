@@ -18,11 +18,12 @@ This extension adds a convenient "DeepWiki" button to GitHub repository pages, p
 
 Features:
 
-* Seamless GitHub integration
-* One-click DeepWiki access
-* Open in side panel or new tab
-* Clean, GitHub-style design
-* Works on all GitHub repos
+- Seamless GitHub integration
+- One-click DeepWiki access
+- Open in side panel or new tab
+- Use escape key to close side panel
+- Clean, GitHub-style design
+- Works on all GitHub repos
 
 Note: Unofficial extension. No affiliation with GitHub or DeepWiki.
 
@@ -62,7 +63,7 @@ English
 
 ## Permission justification
 
--   Storage permission is required to store settings
+- Storage permission is required to store settings
 
 ## Data usage
 
