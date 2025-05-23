@@ -1,0 +1,16 @@
+#github-deepwiki-container > .btn {
+  cursor: default;
+}
+
+#github-deepwiki-container .button-container {
+  display: flex;
+  gap: calc(0.25rem * 1);
+  justify-content: center;
+  align-items: center;
+}
+
+#github-deepwiki-container .icon {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}

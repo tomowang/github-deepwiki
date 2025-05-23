@@ -1,4 +1,4 @@
-import "~/assets/tailwind.css";
+import "./style.css";
 import ReactDOM from "react-dom/client";
 import { ContentScriptContext } from "wxt/utils/content-script-context";
 import ActionButton from "./ActionButton";

@@ -19,18 +19,14 @@ export default function ActionButton({ user, repo }: Props) {
   }
   return (
     <div className="btn-sm btn cursor-default">
-      <div className="flex gap-1 items-center justify-center">
+      <div className="button-container">
         <img src={logo} width={16} height={16} alt="DeepWiki" />
         <span>DeepWiki</span>
-        <span className="cursor-pointer" onClick={handleClick}>
-          <PanelRightOpen className="w-4 h-4" />
-        </span>
-        <span
-          className="cursor-pointer"
+        <PanelRightOpen className="icon" onClick={handleClick} />
+        <ExternalLink
+          className="icon"
           onClick={() => window.open(link, "_blank")}
-        >
-          <ExternalLink className="w-4 h-4" />
-        </span>
+        />
       </div>
     </div>
   );
